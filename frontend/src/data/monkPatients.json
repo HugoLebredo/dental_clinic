@@ -1,0 +1,38 @@
+[
+    {
+        "indentifier": "XXX1",
+        "active": true,
+        "familyName": "Jane",
+        "name": "Doe",
+        "gender": "female",
+        "birthDate": "",
+        "deceased": false
+    },
+    {
+        "indentifier": "XXX2",
+        "active": true,
+        "familyName": "Frank",
+        "name": "Castle",
+        "gender": "male",
+        "birthDate": "",
+        "deceased": false
+    },
+    {
+        "indentifier": "XXX3",
+        "active": true,
+        "familyName": "Tony",
+        "name": "Stark",
+        "gender": "male",
+        "birthDate": "",
+        "deceased": false
+    },
+    {
+        "indentifier": "XXX4",
+        "active": true,
+        "familyName": "Tony",
+        "name": "Stark",
+        "gender": "female",
+        "birthDate": "",
+        "deceased": true
+    }
+]
