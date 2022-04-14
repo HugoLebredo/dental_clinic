@@ -108,7 +108,7 @@ const PatientsPage = () => {
                 <MenuBar />
                 <PageHeader
                     title = "Patients"
-                    subtitle = "Patienes form alpha"
+                    subtitle = "Patients form alpha"
                     icon = { <SupervisorAccountIcon fontSize='large' /> }
                 />
                 <Paper elevation="0" className = {classes.pageContent}>

@@ -1,0 +1,48 @@
+const mongoose = require('mongoose')
+
+const Patient = require('../models/patient')
+
+const { app, api, getAllContentFromPatients } = require('../helpers/db-validators')
+
+const initialPatients = require('./mockdata/patients.json')
+
+beforeEach(async () => {
+  await Patient.deleteMany({})
+
+  for (const patient of initialPatients) {
+    const patientObject = new Patient(patient)
+    await patientObject.save()
+  }
+})
+
+afterAll(() => {
+  mongoose.connection.close()
+  app.listen().close()
+})
+
+describe('Get patients', () => {
+  test('Patients are returned as JSON', async () => {
+    await api
+      .get('/api/patients')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+  })
+
+  test(`There are ${initialPatients.length} profiles`, async () => {
+    const { profiles } = await getAllContentFromPatients()
+
+    expect(profiles).toHaveLength(initialPatients.length)
+  })
+})
+
+describe('Get one patient', () => {
+  test(`Pick up patient with name: ${initialPatients[0].name}`, async () => {
+    const { ids } = await getAllContentFromPatients()
+
+    const response = await api.get(`/api/patients/${ids[0]}`)
+
+    const { patient } = response.body
+
+    expect(patient.name).toEqual(initialPatients[0].name)
+  })
+})

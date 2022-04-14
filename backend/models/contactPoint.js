@@ -1,7 +1,7 @@
-const { Schema, model } = require('mongoose')
+const { Schema } = require('mongoose')
 
-const systemValues = ['phone' | 'fax' | 'email' | 'pager' | 'url' | 'sms' | 'other']
-const useValues = ['home' | 'work' | 'temp' | 'old' | 'mobile']
+const systemValues = ['phone', 'fax', 'email', 'pager', 'url', 'sms', 'other']
+const useValues = ['home', 'work', 'temp', 'old', 'mobile']
 
 const ContactPointSchema = Schema({
   system: { type: String, enum: systemValues },
@@ -12,4 +12,10 @@ const ContactPointSchema = Schema({
 
 })
 
-module.exports = model('Contact Point', ContactPointSchema)
+ContactPointSchema.methods.toJSON = function () {
+  const { __v, _id, status, ...contactPoint } = this.toObject()
+  contactPoint.iid = _id
+  return contactPoint
+}
+
+module.exports = ContactPointSchema

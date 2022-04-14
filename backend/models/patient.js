@@ -1,11 +1,17 @@
 const { Schema, model } = require('mongoose')
 
-const genderValues = ['male' | 'female' | 'other' | 'unknown']
+const ContactPoint = require('./contactPoint')
+const humanNameSchema = require('./humanName')
+
+const genderValues = ['male', 'female', 'other', 'unknown']
 
 const PatientSchema = Schema({
+  dni: { type: String, require: true },
   active: { type: Boolean },
-  name: [{ type: Schema.Types.ObjectId, ref: 'Human Name' }],
-  telecom: [{ type: Schema.Types.ObjectId, ref: 'Contact Point' }],
+  // name: [{ type: Schema.Types.ObjectId, ref: 'Human Name' }],
+  // telecom: [{ type: Schema.Types.ObjectId, ref: 'Contact Point' }],
+  name: [humanNameSchema],
+  telecom: [ContactPoint],
   gender: { type: String, enum: genderValues },
   birthDate: { type: Date }
 })

@@ -44,6 +44,7 @@ const patientPut = async (req = request, res = response) => {
 }
 
 const patientCreate = async (req, res = response) => {
+  console.log('dentro patientCreate')
   try {
     const { ...body } = req.body
     const patient = new Patient(body)

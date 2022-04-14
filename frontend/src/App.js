@@ -4,16 +4,13 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import { ThemeProvider } from '@material-ui/styles'
 
 import WelcomePage from './pages/WelcomePage'
 import PatientsPage from './pages/PatientsPage'
-// import Login from './components/Login'
+import LoginPage from './pages/LoginPage'
 
-import { ThemeProvider } from '@material-ui/styles'
 import theme from './helpers/theme'
-
-// const App = () =>
-//    <Login/>
 
 const App = () => (
     <ThemeProvider theme = {theme}>
@@ -24,6 +21,9 @@ const App = () => (
                 </Route>
                 <Route exact path="/patients">
                     <PatientsPage />
+                </Route>
+                <Route exact path="/login">
+                    <LoginPage />
                 </Route>
             </Switch>
         </Router>

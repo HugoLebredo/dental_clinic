@@ -6,19 +6,21 @@
   "author": "Hugo Lebredo",
   "license": "ISC",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app.js",
+    "dev": "NODE_ENV=test nodemon app.js",
     "start": "NODE_ENV=production node app.js",
-    "test": "NODE_ENV=test jest --verbose --silent --coverage",
+    "test": "NODE_ENV=test jest --verbose --silent=false --coverage",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --fix .",
     "lint:fix": "eslint --fix --ext .js,.jsx ."
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13"
   },
@@ -28,7 +30,9 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.1",
+    "express-validator": "^6.14.0",
     "jest": "27.3.1",
-    "nodemon": "2.0.15"
+    "nodemon": "2.0.15",
+    "supertest": "6.2.2"
   }
 }

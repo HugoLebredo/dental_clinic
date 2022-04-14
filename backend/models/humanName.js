@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose')
+const { Schema } = require('mongoose')
 
-const useValues = ['usual' | 'official' | 'temp' | 'nickname' | 'anonymous' | 'old' | 'maiden']
+const useValues = ['usual', 'official', 'temp', 'nickname', 'anonymous', 'old', 'maiden']
 
 const HumanNameSchema = Schema({
   use: { type: String, enum: useValues },
@@ -8,15 +8,15 @@ const HumanNameSchema = Schema({
   family: { type: String },
   given: [{ type: String }],
   prefix: [{ type: String }],
-  suffix: [{ type: String }],
-  period: { type: Schema.Types.ObjectId, ref: 'Period' }
+  suffix: [{ type: String }]
+  // period: { type: Schema.Types.ObjectId, ref: 'Period' }
 
 })
 
 HumanNameSchema.methods.toJSON = function () {
-  const { __v, _id, status, ...profile } = this.toObject()
-  profile.iid = _id
-  return profile
+  const { __v, _id, status, ...humanName } = this.toObject()
+  humanName.iid = _id
+  return humanName
 }
 
-module.exports = model('Human Name', HumanNameSchema)
+module.exports = HumanNameSchema

@@ -39,8 +39,8 @@ const usersPut = async (req = request, res = response) => {
 }
 
 const usersPost = async (req, res = response) => {
-  const { name, password, role, email } = req.body
-  const user = new User({ name, password, role, email })
+  const { name, password, role, email, active, creationDate } = req.body
+  const user = new User({ name, password, role, email, active, creationDate })
 
   // encrypt password
   const salt = bcryptjs.genSaltSync()
@@ -49,7 +49,7 @@ const usersPost = async (req, res = response) => {
   // save user
   await user.save()
 
-  res.json({
+  res.status(201).json({
     message: 'post API - controller',
     user
   })

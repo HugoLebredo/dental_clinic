@@ -1,0 +1,15 @@
+[
+    {
+        "active":"true",
+        "email":"peter@test.com",
+        "password":"12345",
+        "role":"ADMIN_ROLE",
+        "name":"peter"
+    },    {
+        "active":"true",
+        "email":"alice@test.com",
+        "password":"ABCDE",
+        "role":"ADMIN_ROLE",
+        "name":"Alice"
+    }
+]
