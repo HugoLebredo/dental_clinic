@@ -9,8 +9,7 @@ const ContactPointSchema = Schema({
   use: { type: String, enum: useValues },
   rank: { type: Number }, // Specify preferred order of use (1 = highest)
   period: { type: Schema.Types.ObjectId, ref: 'Period' }
-
-})
+}, { _id: false })
 
 ContactPointSchema.methods.toJSON = function () {
   const { __v, _id, status, ...contactPoint } = this.toObject()

@@ -10,8 +10,7 @@ const HumanNameSchema = Schema({
   prefix: [{ type: String }],
   suffix: [{ type: String }]
   // period: { type: Schema.Types.ObjectId, ref: 'Period' }
-
-})
+}, { _id: false })
 
 HumanNameSchema.methods.toJSON = function () {
   const { __v, _id, status, ...humanName } = this.toObject()
