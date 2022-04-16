@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
+const { api, getAllContentFromPatients } = require('./helpers')
 
+const { server } = require('../app')
 const Patient = require('../models/patient')
-
-const { app, api, getAllContentFromPatients } = require('../helpers/db-validators')
 
 const initialPatients = require('./mockdata/patients.json')
 
@@ -17,7 +17,7 @@ beforeEach(async () => {
 
 afterAll(() => {
   mongoose.connection.close()
-  app.listen().close()
+  server.close()
 })
 
 describe('Get patients', () => {
@@ -27,22 +27,21 @@ describe('Get patients', () => {
       .expect(200)
       .expect('Content-Type', /application\/json/)
   })
-
   test(`There are ${initialPatients.length} profiles`, async () => {
-    const { profiles } = await getAllContentFromPatients()
+    const { patients } = await getAllContentFromPatients()
 
-    expect(profiles).toHaveLength(initialPatients.length)
+    expect(patients).toHaveLength(initialPatients.length)
   })
 })
 
 describe('Get one patient', () => {
-  test(`Pick up patient with name: ${initialPatients[0].name}`, async () => {
+  test(`Pick up a patient with given name: ${initialPatients[0].name[0].family}`, async () => {
     const { ids } = await getAllContentFromPatients()
 
     const response = await api.get(`/api/patients/${ids[0]}`)
 
     const { patient } = response.body
 
-    expect(patient.name).toEqual(initialPatients[0].name)
+    expect(patient.name[0].family).toEqual(initialPatients[0].name[0].family)
   })
 })

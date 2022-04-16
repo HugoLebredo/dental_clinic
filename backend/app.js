@@ -9,6 +9,7 @@ const paths = {
   users: '/api/users'
 }
 
+const port = process.env.PORT || 3000
 const app = express()
 
 app.use(cors())
@@ -20,7 +21,7 @@ dbConnection()
 app.use(paths.patient, require('./routes/patient'))
 app.use(paths.users, require('./routes/user'))
 
-app.listen(process.env.PORT, () =>
-  console.log(`App listening at http://localhost:${process.env.PORT}`))
+const server = app.listen(port, () =>
+  console.log(`App listening at http://localhost:${port}`))
 
-module.exports = app
+module.exports = { app, server }

@@ -44,22 +44,11 @@ const getAllContentFromPatients = async () => {
   }
 }
 
-const getAllContentFromUsers = async () => {
-  const response = await api.get('/api/users')
-
-  const { users } = response.body
-
-  return {
-    users
-  }
-}
-
 module.exports = {
   app,
   api,
   isPatientEmailOk,
   isEmailOk,
   existsPatientById,
-  getAllContentFromPatients,
-  getAllContentFromUsers
+  getAllContentFromPatients
 }

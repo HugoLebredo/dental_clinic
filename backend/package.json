@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "NODE_ENV=test nodemon app.js",
     "start": "NODE_ENV=production node app.js",
-    "test": "NODE_ENV=test jest --verbose --silent=false --coverage",
+    "test": "NODE_ENV=test jest --verbose --silent=false --coverage --runInBand",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --fix .",
     "lint:fix": "eslint --fix --ext .js,.jsx ."

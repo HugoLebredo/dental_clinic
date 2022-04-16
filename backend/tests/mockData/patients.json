@@ -1,8 +1,47 @@
 [
     {
-        "familyname":"García",
-        "name":"Pedro"
+        "name":[{
+            "use":"nickname",
+            "family": "Perez",
+            "given": "Ricardo"
+        }],
+        "telecom":[{
+            "system": "phone",
+            "value": "9999-44-44-22",
+            "use": "home"
+        },{
+            "system": "email",
+            "value": "Ricardo@test.com",
+            "use": "work"
+        }],
+        "active":"true",
+        "birthDate":"1992-04-13",
+        "gender":"male"
     },{
-        "familyname":"Menendez",
-        "name":"Ignacio"}
+        "name":[{
+            "use":"official",
+            "family": "Peter",
+            "given": "Parker"
+        },{
+            "use":"nickname",
+            "given": "Spiderman"
+        },{
+            "use":"old",
+            "family": "Reilly",
+            "given": "Ben"
+        }],
+        "telecom":[{
+            "system": "phone",
+            "value": "9999-44-44-22",
+            "use": "home"
+        },{
+            "system": "email",
+            "value": "peterparker@buggle.com",
+            "use": "work"
+        }],
+        "active":"true",
+        "dni":"11223344J",
+        "birthDate":"1972-09-16",
+        "gender":"male"
+    }
 ]

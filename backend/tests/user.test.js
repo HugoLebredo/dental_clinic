@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 const User = require('../models/user')
 
-const { app, api, getAllContentFromUsers } = require('../helpers/db-validators')
+const { api, getAllContentFromUsers } = require('./helpers')
+const { server } = require('../app')
 
 const initialUsers = require('./mockdata/users.json')
 
@@ -17,7 +18,7 @@ beforeEach(async () => {
 
 afterAll(async () => {
   mongoose.connection.close()
-  app.listen().close()
+  server.close()
 })
 
 describe('Get users', () => {
@@ -28,7 +29,7 @@ describe('Get users', () => {
       .expect('Content-Type', /application\/json/)
   })
 
-  test(`There are ${initialUsers.length} profiles`, async () => {
+  test(`There are ${initialUsers.length} users`, async () => {
     const { users } = await getAllContentFromUsers()
 
     expect(users).toHaveLength(initialUsers.length)
@@ -42,19 +43,19 @@ describe('POST user', () => {
       email: 'bob@test.com',
       password: 'ABCDEF',
       role: 'ADMIN_ROLE',
-      name: 'Bob2'
+      name: 'Bob'
     }
 
     const response = await api.post('/api/users')
       .send(newUser)
       .expect('Content-Type', /application\/json/)
-      .expect(482)
-    console.log(response.body)
+      .expect(201)
+
     const { user } = response.body
 
     const { users } = await getAllContentFromUsers()
 
-    expect(user.name).toEqual('Bob2')
+    expect(user.name).toEqual('Bob')
     expect(typeof (user.creationDate)).toEqual(typeof (Date()))
 
     expect(users.length).toEqual(initialUsers.length + 1)
@@ -66,12 +67,12 @@ describe('POST user', () => {
       email: 'alice@test.com',
       password: 'ABCDEF',
       role: 'ADMIN_ROLE',
-      name: 'AliceII'
+      name: 'Alice II'
     }
 
     await api.post('/api/users')
       .send(newUser)
       .expect('Content-Type', /application\/json/)
-      .expect(400)
+      .expect(482)
   })
 })
