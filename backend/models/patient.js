@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose')
 
-const ContactPoint = require('./contactPoint')
+const AddressSchema = require('./address')
+const ContactPointSchema = require('./contactPoint')
 const humanNameSchema = require('./humanName')
 
 const genderValues = ['male', 'female', 'other', 'unknown']
@@ -9,9 +10,10 @@ const PatientSchema = Schema({
   dni: { type: String, require: true },
   active: { type: Boolean },
   name: [humanNameSchema],
-  telecom: [ContactPoint],
+  telecom: [ContactPointSchema],
   gender: { type: String, enum: genderValues },
-  birthDate: { type: Date }
+  birthDate: { type: Date },
+  address: [AddressSchema]
 })
 
 PatientSchema.methods.toJSON = function () {

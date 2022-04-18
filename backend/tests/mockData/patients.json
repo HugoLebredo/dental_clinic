@@ -39,6 +39,26 @@
             "value": "peterparker@buggle.com",
             "use": "work"
         }],
+        "address":[{
+            "use":"work",
+            "type":"both",
+            "text":"1050 W Wishard Blvd RG 5th floor Indianapolis, IN 46240",
+            "line": ["1050 W Wishard Blvd","RG 5th floor"],
+            "city":"Indianapolis",
+            "district":"IN",
+            "country":"United States",
+            "postalCode":"46240"
+        },{
+            "use":"temp",
+            "type":"postal",
+            "line": ["PO Box 31445"],
+            "city":"Erewhon",
+            "postalCode":"0001",
+            "period":{
+                "start":"2022-01-01",
+                "end":"2022-12-31"
+            }
+        }],
         "active":"true",
         "dni":"11223344J",
         "birthDate":"1972-09-16",
