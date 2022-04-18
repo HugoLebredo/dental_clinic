@@ -6,7 +6,8 @@ const { dbConnection } = require('./database/config')
 
 const paths = {
   patient: '/api/patients',
-  users: '/api/users'
+  users: '/api/users',
+  practitioners: '/api/practitioners'
 }
 
 const port = process.env.PORT || 3000
@@ -20,6 +21,7 @@ dbConnection()
 
 app.use(paths.patient, require('./routes/patient'))
 app.use(paths.users, require('./routes/user'))
+app.use(paths.practitioners, require('./routes/practitioner'))
 
 const server = app.listen(port, () =>
   console.log(`App listening at http://localhost:${port}`))
