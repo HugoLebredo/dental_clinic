@@ -1,5 +1,38 @@
 [
-    {
+    {"identifier": [
+        {
+          "use": "usual",
+          "type": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                "code": "MR"
+              }
+            ]
+          },
+          "system": "urn:oid:1.2.36.146.595.217.0.1",
+          "value": "12345",
+          "period": {
+            "start": "2001-05-06"
+          }
+        },
+        {
+            "use": "usual",
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                  "code": "PR"
+                }
+              ]
+            },
+            "system": "urn:oid:1.2.36.146.595.217.0.1",
+            "value": "123456789L",
+            "period": {
+              "start": "2021-09-16"
+            }
+          }
+      ],
         "name":[{
             "use":"nickname",
             "family": "Perez",

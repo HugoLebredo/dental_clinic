@@ -3,11 +3,12 @@ const { Schema, model } = require('mongoose')
 const AddressSchema = require('./address')
 const ContactPointSchema = require('./contactPoint')
 const humanNameSchema = require('./humanName')
+const IdentifierSchema = require('./identifier')
 
 const genderValues = ['male', 'female', 'other', 'unknown']
 
 const PatientSchema = Schema({
-  dni: { type: String, require: true },
+  identifier: [IdentifierSchema],
   active: { type: Boolean },
   name: [humanNameSchema],
   telecom: [ContactPointSchema],
