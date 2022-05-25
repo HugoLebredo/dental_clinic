@@ -4,7 +4,7 @@ const CodingSchema = Schema({
   system: { type: String },
   version: { type: String },
   code: { type: String },
-  display: [{ type: Boolean }]
+  display: [{ type: [String, Boolean] }]
 }, { _id: false })
 
 CodingSchema.methods.toJSON = function () {

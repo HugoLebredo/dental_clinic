@@ -5,9 +5,10 @@ const cors = require('cors')
 const { dbConnection } = require('./database/config')
 
 const paths = {
+  condition: '/api/conditions',
   patient: '/api/patients',
-  users: '/api/users',
-  practitioners: '/api/practitioners'
+  practitioners: '/api/practitioners',
+  users: '/api/users'
 }
 
 const port = process.env.PORT || 3000
@@ -19,6 +20,7 @@ app.use(express.json())
 
 dbConnection()
 
+app.use(paths.condition, require('./routes/condition'))
 app.use(paths.patient, require('./routes/patient'))
 app.use(paths.users, require('./routes/user'))
 app.use(paths.practitioners, require('./routes/practitioner'))

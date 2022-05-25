@@ -9,7 +9,7 @@ const practitionersGet = async (req = request, res = response) => {
     Practitioner.countDocuments(queryStatements),
     Practitioner.find(queryStatements)
   ])
-  console.log({ total, practitioners })
+
   res.json({
     total,
     practitioners
@@ -44,7 +44,6 @@ const practitionerPut = async (req = request, res = response) => {
 }
 
 const practitionerCreate = async (req, res = response) => {
-  console.log('dentro practitionerCreate')
   try {
     const { ...body } = req.body
     const practitioner = new Practitioner(body)

@@ -42,10 +42,22 @@ const getAllContentFromPractitioners = async () => {
     practitioners
   }
 }
+
+const getAllContentFromConditions = async () => {
+  const response = await api.get('/api/conditions')
+
+  const { conditions } = response.body
+
+  return {
+    ids: response.body.conditions.map(condition => condition.iid),
+    conditions
+  }
+}
 module.exports = {
   api,
   getAllContentFromUsers,
   existsPatientById,
   getAllContentFromPatients,
-  getAllContentFromPractitioners
+  getAllContentFromPractitioners,
+  getAllContentFromConditions
 }
