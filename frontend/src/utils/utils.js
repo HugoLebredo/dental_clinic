@@ -3,9 +3,29 @@ export const parseAddress = (addressFHIR) => {
 }
 
 export const parseName = (nameFHIR) => {
-  const familyName = 'Lebredo'
-  const name = 'Hugo'
+  const namePerson = nameFHIR.find(name => name.system === 'official') || nameFHIR[0]
+  const familyName = namePerson.family
+  const name = namePerson.given.toString().replace(/,/g, ' ')
   return ({ name, familyName })
 }
 
-export const parseTelecom = (telecomFHIR) => ({ phone: '123455677', email: 'hola@prueba.com' })
+export const parseTelecom = (telecomFHIR) => {
+  const phones = telecomFHIR.filter(telecom => telecom.system === 'phone')
+  const emails = telecomFHIR.filter(telecom => telecom.system === 'email')
+
+  const phone = phones[0].value
+  const email = emails[0].value
+
+  return { phone, email }
+}
+
+export const parseDate = (date) => {
+  const d = new Date(date)
+  const formatedDate = d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear()
+  return formatedDate
+}
+
+export const parseIdentifier = (identifiers) => {
+  const indentifier = identifiers.find(ident => ident.system === 'official') || identifiers[0]
+  return indentifier.value
+}
