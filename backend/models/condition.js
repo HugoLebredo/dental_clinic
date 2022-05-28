@@ -7,6 +7,7 @@ const ReferenceSchema = require('./reference')
 // const clinicalStatusValues = ['active', 'recurrence', 'relapse', 'inactive', 'remission', 'resolved']
 
 const ConditionSchema = Schema({
+  id: { type: String }, // borrar
   identifier: [IdentifierSchema],
   clinicalStatus: [CodeableConceptSchema],
   verificationStatus: [CodeableConceptSchema],

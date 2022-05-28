@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
 import patientService from '../services/patientService'
 import { makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar, InputAdornment } from '@material-ui/core'
@@ -9,14 +8,12 @@ import CloseIcon from '@material-ui/icons/Close'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import Search from '@material-ui/icons/Search'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
-import PatientsForm from '../components/Patiens/PatientsForm'
+import PatientsForm from '../components/Patiens/PatientForm'
 import MenuBar from '../components/MenuBar'
 import PageHeader from '../components/PageHeader'
 import SideMenu from '../components/SideMenu'
 import useTable from '../hooks/useTable'
 import Controls from '../components/controls'
-
-import getAllPatients from '../utils/transform/getAllPatients'
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
@@ -37,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const headCells = [
+  { id: 'dni', label: 'DNI' },
   { id: 'familyName', label: 'Family Name' },
   { id: 'name', label: 'Name' },
   { id: 'gender', label: 'Gender' },
@@ -47,32 +45,8 @@ const headCells = [
 ]
 
 const PatientsPage = () => {
-  // desde aqui borrar
-  const [records, setRecords] = useState([])
-
-  useEffect(() => {
-    const getPatients = async () => {
-      try {
-        const { data } = await axios.get('http://localhost:8080/api/patients')
-        const patients = getAllPatients(data)
-        console.log(patients)
-        setRecords(patients) // esto hay que cambiarlo
-      } catch (error) {
-        console.log(error)
-        throw (error)
-      }
-    }
-    getPatients()
-  }, [])
-
-  // hasta aqui
-
+  const { records } = patientService.getAllPatients()
   const classes = useStyles()
-  // const [records, setRecords] = useState(patientService.getAllPatients())
-  // const datos = usePatientList()
-  // console.log({ datos })
-  // const [records, setRecords] = useState(datos)
-  // const [records, setRecords] = useState(defaultData)
   const [recordForEdit, setRecordForEdit] = useState(null)
   // const history = useHistory()
   const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
@@ -93,15 +67,15 @@ const PatientsPage = () => {
       }
     })
   }
-
+  /*
   const addOrEdit = (patient, resetForm) => {
-    if (patient.id === 0) { patientService.insertPatient(patient) } else { patientService.updatePatient(patient) }
+    // if (patient.id === 0) { patientService.insertPatient(patient) } else { patientService.updatePatient(patient) }
     resetForm()
     setRecordForEdit(null)
     setOpenPopup(false)
     setRecords(records)
   }
-
+*/
   const openInPopup = item => {
     setRecordForEdit(item)
     setOpenPopup(true)
@@ -143,7 +117,8 @@ const PatientsPage = () => {
                         <TableBody>
                             {
                                 recordsAfterPagingAndSorting().map(item => (
-                                    <TableRow key = { item.indentifier }>
+                                    <TableRow key = { item.key }>
+                                        <TableCell>{ item.dni }</TableCell>
                                         <TableCell>{ item.familyName }</TableCell>
                                         <TableCell>{ item.name }</TableCell>
                                         <TableCell>{ item.gender }</TableCell>
@@ -175,7 +150,7 @@ const PatientsPage = () => {
                     setOpenPopup={setOpenPopup}>
                     <PatientsForm
                         recordForEdit={recordForEdit}
-                        addOrEdit = {addOrEdit}
+                        // addOrEdit = {addOrEdit}
                     />
                 </Controls.Popup>
             </div>

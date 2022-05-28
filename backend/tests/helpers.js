@@ -53,11 +53,26 @@ const getAllContentFromConditions = async () => {
     conditions
   }
 }
+
+const getAllContentFromMedicalHistory = async () => {
+  const response = await api.get('/api/conditions/history/AAAAAA')
+
+  const { conditions } = response.body
+
+  console.log(conditions)
+
+  return {
+    ids: response.body.conditions.map(condition => condition.iid),
+    conditions
+  }
+}
+
 module.exports = {
   api,
   getAllContentFromUsers,
   existsPatientById,
   getAllContentFromPatients,
   getAllContentFromPractitioners,
-  getAllContentFromConditions
+  getAllContentFromConditions,
+  getAllContentFromMedicalHistory
 }

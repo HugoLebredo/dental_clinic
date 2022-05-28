@@ -33,3 +33,20 @@ describe('Get conditions 🩻', () => {
     expect(conditions).toHaveLength(initialConditions.length)
   })
 })
+
+describe('Medical History 🗂', () => {
+  test('Medical History is returned as JSON', async () => {
+    await api
+      .get('/api/conditions/history/AAAAAA')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+  })
+
+  test('There is 1 record', async () => {
+    const { medHistory } = await getAllContentFromConditions()
+    console.log('HOLA HOLA!!!')
+    console.log(medHistory)
+
+    expect(medHistory).toHaveLength(1)
+  })
+})

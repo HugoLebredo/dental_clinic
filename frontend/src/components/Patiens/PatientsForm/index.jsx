@@ -1,1 +1,1 @@
-export { default } from './PatientsForm'
+export { default } from '../PatientsForm/PatientsForm'

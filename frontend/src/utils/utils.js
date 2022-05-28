@@ -26,6 +26,6 @@ export const parseDate = (date) => {
 }
 
 export const parseIdentifier = (identifiers) => {
-  const indentifier = identifiers.find(ident => ident.system === 'official') || identifiers[0]
-  return indentifier.value
+  const indentifier = identifiers.find(ident => ident.use === 'official') || identifiers[0]
+  return indentifier.value[0]
 }

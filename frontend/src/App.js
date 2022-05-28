@@ -8,6 +8,7 @@ import { ThemeProvider } from '@material-ui/styles'
 
 import WelcomePage from './pages/WelcomePage'
 import PatientsPage from './pages/PatientsPage'
+import PatientPage from './pages/PatientPage'
 import LoginPage from './pages/LoginPage'
 
 import theme from './helpers/theme'
@@ -21,6 +22,9 @@ const App = () => (
                 </Route>
                 <Route exact path="/patients">
                     <PatientsPage />
+                </Route>
+                <Route exact path="/patient/:idPatient">
+                    <PatientPage />
                 </Route>
                 <Route exact path="/login">
                     <LoginPage />

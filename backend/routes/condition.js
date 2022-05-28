@@ -5,7 +5,8 @@ const { Router } = require('express')
 
 const {
   conditionsGet,
-  conditionCreate
+  conditionCreate,
+  MedicalHistoryPatient
 } = require('../controllers/condition')
 
 // const { isEmailOk } = require('../helpers/db-validators')
@@ -15,5 +16,7 @@ const router = Router()
 router.get('/', conditionsGet)
 
 router.post('/', conditionCreate)
+
+router.get('/history/:id', MedicalHistoryPatient)
 
 module.exports = router
