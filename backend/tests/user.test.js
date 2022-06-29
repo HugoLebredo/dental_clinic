@@ -4,14 +4,22 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 
 const { api, getAllContentFromUsers } = require('./helpers')
+const { hashPassword } = require('../helpers/password')
 const { server } = require('../app')
 
 const initialUsers = require('./mockdata/users.json')
 
 beforeEach(async () => {
   await User.deleteMany({})
+
   for (const user of initialUsers) {
     const userObject = new User(user)
+
+    userObject.name = user.name.toUpperCase()
+    userObject.email = user.email.toUpperCase()
+
+    userObject.password = hashPassword(userObject.password)
+
     await userObject.save()
   }
 })
@@ -55,19 +63,19 @@ describe('POST user', () => {
 
     const { users } = await getAllContentFromUsers()
 
-    expect(user.name).toEqual('Bob')
+    expect(user.name).toEqual('BOB')
     expect(typeof (user.creationDate)).toEqual(typeof (Date()))
 
     expect(users.length).toEqual(initialUsers.length + 1)
   })
 
-  test('User email exists in DB', async () => {
+  test('User exists in DB', async () => {
     const newUser = {
       active: true,
       email: 'alice@test.com',
       password: 'ABCDEF',
       role: 'ADMIN_ROLE',
-      name: 'Alice II'
+      name: 'Alice'
     }
 
     await api.post('/api/users')

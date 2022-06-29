@@ -1,9 +1,6 @@
-const supertest = require('supertest')
-const app = require('../app')
+/*
 const Patient = require('../models/patient')
 const User = require('../models/user')
-
-const api = supertest(app)
 
 const isPatientEmailOk = async (email = '') => {
   // check if email exists
@@ -14,17 +11,9 @@ const isPatientEmailOk = async (email = '') => {
     throw new Error(`email ${email} already exists`)
   }
 }
+*/
 
-const isEmailOk = async (email = '') => {
-  // check if email exists
-  const emailExists = await User.findOne({ email })
-
-  // emailExists = false
-  if (emailExists) {
-    throw new Error(`email ${email} already exists`)
-  }
-}
-
+/*
 const existsPatientById = async (id) => {
   const patientExists = await Patient.findById(id)
 
@@ -52,3 +41,4 @@ module.exports = {
   existsPatientById,
   getAllContentFromPatients
 }
+*/

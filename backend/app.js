@@ -6,6 +6,7 @@ const { dbConnection } = require('./database/config')
 
 const paths = {
   condition: '/api/conditions',
+  login: '/api/login',
   patient: '/api/patients',
   practitioners: '/api/practitioners',
   users: '/api/users'
@@ -21,6 +22,7 @@ app.use(express.json())
 dbConnection()
 
 app.use(paths.condition, require('./routes/condition'))
+app.use(paths.login, require('./routes/auth'))
 app.use(paths.patient, require('./routes/patient'))
 app.use(paths.users, require('./routes/user'))
 app.use(paths.practitioners, require('./routes/practitioner'))

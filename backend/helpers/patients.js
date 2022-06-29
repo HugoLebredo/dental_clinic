@@ -1,3 +1,4 @@
+/*
 const api = require('../tests/helpers/db-validators')
 const Patient = require('../models/patient')
 
@@ -24,3 +25,4 @@ module.exports = {
   existsPatientById,
   getAllContentFromPatients
 }
+*/

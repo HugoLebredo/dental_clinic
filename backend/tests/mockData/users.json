@@ -2,13 +2,13 @@
     {
         "active":"true",
         "email":"tony@test.com",
-        "password":"12345",
+        "password":"holamundo",
         "role":"ADMIN_ROLE",
         "name":"tony"
     },    {
         "active":"true",
         "email":"alice@test.com",
-        "password":"ABCDE",
+        "password":"ABCDEF",
         "role":"ADMIN_ROLE",
         "name":"Alice"
     }

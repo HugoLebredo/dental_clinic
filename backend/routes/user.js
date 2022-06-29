@@ -4,7 +4,7 @@ const { check } = require('express-validator')
 const { validateFields } = require('../middlewares/validate-fields')
 const { validateJWT } = require('../middlewares/validate-jwt')
 
-const { isEmailOk } = require('../helpers/db-validators')
+const { isEmailOk } = require('../helpers/users')
 
 const {
   usersGet,

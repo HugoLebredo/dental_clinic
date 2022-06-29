@@ -1,5 +1,5 @@
 const { response, request } = require('express')
-const bcryptjs = require('bcryptjs')
+const { hashPassword } = require('../helpers/password')
 
 const User = require('../models/user')
 
@@ -27,8 +27,7 @@ const usersPut = async (req = request, res = response) => {
 
   // validate against database
   if (password) {
-    const salt = bcryptjs.genSaltSync()
-    other.password = bcryptjs.hashSync(password, salt)
+    other.password = hashPassword(password)
   }
 
   const user = await User.findByIdAndUpdate(id, other)
@@ -39,12 +38,27 @@ const usersPut = async (req = request, res = response) => {
 }
 
 const usersPost = async (req, res = response) => {
-  const { name, password, role, email, active, creationDate } = req.body
+  let { name, password, role, email, active, creationDate } = req.body
+  // capital letters
+  name = name.toUpperCase()
+  email = email.toUpperCase()
+
+  const queryStatements = { name, email }
+  // new User({ name, password, role, email, active, creationDate }
+  User.find(queryStatements)
+
+  const userDB = await User.findOne(queryStatements)
+
+  if (userDB) {
+    return res.status(482).json({
+      message: 'Existe usuario'
+    })
+  }
+
   const user = new User({ name, password, role, email, active, creationDate })
 
   // encrypt password
-  const salt = bcryptjs.genSaltSync()
-  user.password = bcryptjs.hashSync(password, salt)
+  user.password = hashPassword(password)
 
   // save user
   await user.save()

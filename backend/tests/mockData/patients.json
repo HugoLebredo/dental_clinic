@@ -1,5 +1,6 @@
 [
-    {
+    {  
+      "resourceType": "Patient",
       "identifier": [
         {
           "use": "usual",
@@ -57,6 +58,7 @@
         "birthDate":"1992-04-13",
         "gender":"male"
     },{
+        "resourceType": "Patient",
         "name":[{
             "use":"official",
             "family": "Parker",

@@ -1,9 +1,13 @@
-const getAllContentFromUsers = async () => {
-  const response = await api.get('/api/users')
+const User = require('../models/user')
 
-  const { users } = response.body
+const isEmailOk = async (email = '') => {
+  // check if email exists
+  const emailExists = await User.findOne({ email })
 
-  return {
-    users
+  // emailExists = false
+  if (emailExists) {
+    throw new Error(`email ${email} already exists`)
   }
 }
+
+module.exports = { isEmailOk }

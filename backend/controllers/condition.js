@@ -36,20 +36,8 @@ const conditionCreate = async (req, res = response) => {
 }
 
 const MedicalHistoryPatient = async (req, res = response) => {
-  // const { id } = req.params
-  const medHistory = await Condition.find(
-    { id: 'textExample' }
-    /* {
-      identifier: {
-        $elemMatch: {
-          system: 'urn:oid:1.2.36.146.595.217.0.1',
-          value: 'ID12345'
-        }
-      }
-    } */)
-  console.log({ medHistory })
   res.status(200).json({
-    medHistory: 'hisrtorial'
+    medHistory: 'historial'
   })
 }
 

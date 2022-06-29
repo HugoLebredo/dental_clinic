@@ -44,7 +44,6 @@ describe('Medical History 🗂', () => {
 
   test('There is 1 record', async () => {
     const { medHistory } = await getAllContentFromConditions()
-    console.log('HOLA HOLA!!!')
     console.log(medHistory)
 
     expect(medHistory).toHaveLength(1)

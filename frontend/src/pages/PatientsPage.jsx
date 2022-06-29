@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 // import { useHistory } from 'react-router-dom'
-import patientService from '../services/patientService'
 import { makeStyles, Paper, TableBody, TableCell, TableRow, Toolbar, InputAdornment } from '@material-ui/core'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined'
 import Search from '@material-ui/icons/Search'
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
-import PatientsForm from '../components/Patiens/PatientForm'
+
+import Controls from '../components/controls'
 import MenuBar from '../components/MenuBar'
 import PageHeader from '../components/PageHeader'
+import PatientsForm from '../components/Patiens/PatientForm'
 import SideMenu from '../components/SideMenu'
 import useTable from '../hooks/useTable'
-import Controls from '../components/controls'
+import patientService from '../services/patientService'
 
 const useStyles = makeStyles(theme => ({
   pageContent: {
