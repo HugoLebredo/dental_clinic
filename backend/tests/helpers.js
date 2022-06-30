@@ -6,8 +6,8 @@ const { app } = require('../app')
 const Patient = require('../models/patient')
 const api = supertest(app)
 
-const getAllContentFromUsers = async () => {
-  const response = await api.get('/api/users')
+const getAllContentFromUsers = async (token) => {
+  const response = await api.get('/api/users').set('x-token', token)
 
   const { users } = response.body
 
@@ -21,8 +21,8 @@ const existsPatientById = async (id) => {
   }
 }
 
-const getAllContentFromPatients = async () => {
-  const response = await api.get('/api/patients')
+const getAllContentFromPatients = async (token) => {
+  const response = await api.get('/api/patients').set('x-token', token)
 
   const { patients } = response.body
 
@@ -32,8 +32,8 @@ const getAllContentFromPatients = async () => {
   }
 }
 
-const getAllContentFromPractitioners = async () => {
-  const response = await api.get('/api/practitioners')
+const getAllContentFromPractitioners = async (token) => {
+  const response = await api.get('/api/practitioners').set('x-token', token)
 
   const { practitioners } = response.body
 
@@ -43,8 +43,8 @@ const getAllContentFromPractitioners = async () => {
   }
 }
 
-const getAllContentFromConditions = async () => {
-  const response = await api.get('/api/conditions')
+const getAllContentFromConditions = async (token) => {
+  const response = await api.get('/api/conditions').set('x-token', token)
 
   const { conditions } = response.body
 
@@ -59,12 +59,26 @@ const getAllContentFromMedicalHistory = async () => {
 
   const { conditions } = response.body
 
-  console.log(conditions)
-
   return {
     ids: response.body.conditions.map(condition => condition.iid),
     conditions
   }
+}
+
+const createMockUser = async () => {
+  const mockUser = {
+    active: true,
+    email: 'mockadmin@test.com',
+    password: 'ABCDEF',
+    role: 'ADMIN_ROLE',
+    name: 'MOCK_ADMIN'
+  }
+
+  await api.post('/api/users').send(mockUser)
+
+  const response = await api.get('/api/login').send({ name: mockUser.name, password: mockUser.password })
+
+  return response.body.token
 }
 
 module.exports = {
@@ -74,5 +88,6 @@ module.exports = {
   getAllContentFromPatients,
   getAllContentFromPractitioners,
   getAllContentFromConditions,
-  getAllContentFromMedicalHistory
+  getAllContentFromMedicalHistory,
+  createMockUser
 }

@@ -11,5 +11,11 @@
         "password":"ABCDEF",
         "role":"ADMIN_ROLE",
         "name":"Alice"
-    }
+    }, {
+        "active": true,
+        "email": "mockadmin@test.com",
+        "password": "ABCDEF",
+        "role": "ADMIN_ROLE",
+        "name": "MOCK_ADMIN"
+      }
 ]

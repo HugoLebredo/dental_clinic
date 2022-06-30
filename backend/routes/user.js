@@ -16,9 +16,10 @@ const {
 
 const router = Router()
 
-router.get('/', usersGet)
+router.get('/', [validateJWT], usersGet)
 
 router.put('/:id', [
+  validateJWT,
   check('id', 'id is not a valid MongoId value').isMongoId(),
   // check('id').custom(existsUserById),
   validateFields

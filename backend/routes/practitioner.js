@@ -1,6 +1,6 @@
 const { Router } = require('express')
 // const { check } = require('express-validator')
-
+const { validateJWT } = require('../middlewares/validate-jwt')
 // const { validateFields } = require('../middlewares/validate-fields')
 
 const {
@@ -15,7 +15,7 @@ const {
 
 const router = Router()
 
-router.get('/', practitionersGet)
+router.get('/', [validateJWT], practitionersGet)
 
 router.get('/:id', practitionerGet)
 

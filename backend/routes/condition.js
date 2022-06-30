@@ -1,6 +1,6 @@
 const { Router } = require('express')
 // const { check } = require('express-validator')
-
+const { validateJWT } = require('../middlewares/validate-jwt')
 // const { validateFields } = require('../middlewares/validate-fields')
 
 const {
@@ -13,10 +13,10 @@ const {
 
 const router = Router()
 
-router.get('/', conditionsGet)
+router.get('/', [validateJWT], conditionsGet)
 
-router.post('/', conditionCreate)
+router.post('/', [validateJWT], conditionCreate)
 
-router.get('/history/:id', MedicalHistoryPatient)
+router.get('/history/:id', [validateJWT], MedicalHistoryPatient)
 
 module.exports = router

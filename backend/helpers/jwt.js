@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 
 const generateJWT = (uid = '') => {
   const { SECRETORPRIVATEKEY } = process.env
-  console.log({ SECRETORPRIVATEKEY })
 
   return new Promise((resolve, reject) => {
     const payload = { uid }
