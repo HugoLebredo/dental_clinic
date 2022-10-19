@@ -76,7 +76,7 @@ const createMockUser = async () => {
 
   await api.post('/api/users').send(mockUser)
 
-  const response = await api.get('/api/login').send({ name: mockUser.name, password: mockUser.password })
+  const response = await api.post('/api/login').send({ email: mockUser.email, password: mockUser.password })
 
   return response.body.token
 }

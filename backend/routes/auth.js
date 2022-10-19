@@ -3,6 +3,6 @@ const login = require('../controllers/auth')
 
 const router = Router()
 
-router.get('/', login)
+router.post('/', login)
 
 module.exports = router

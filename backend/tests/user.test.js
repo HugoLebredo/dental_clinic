@@ -24,7 +24,7 @@ beforeEach(async () => {
     await userObject.save()
   }
 
-  const response = await api.get('/api/login').send({ name: 'MOCK_ADMIN', password: 'ABCDEF' })
+  const response = await api.post('/api/login').send({ email: 'mockadmin@test.com', password: 'ABCDEF' })
 
   token = response.body.token
 })

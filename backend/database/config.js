@@ -22,6 +22,10 @@ const dbConnection = async () => {
     console.log(err)
     throw new Error('Cannot connect to the database ')
   }
-}
 
+  process.on('uncaughtException', error => {
+    console.error(error)
+    mongoose.disconnect()
+  })
+}
 module.exports = { dbConnection }

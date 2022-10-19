@@ -16,7 +16,9 @@ const {
 
 const router = Router()
 
-router.get('/', [validateJWT], usersGet)
+router.get('/', [
+  // validateJWT
+], usersGet)
 
 router.put('/:id', [
   validateJWT,
